@@ -12,77 +12,152 @@
 }
 
 body {
-    background-color: #FFF8E7; /* Fondo Cosmic Latte */
-    color: #930500; /* Texto Sangria */
-    display: block;
+    background-color: #FFF8E7;
+    color: #930500;
     min-height: 100vh;
-    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
+/* --- DECORACIONES POR CÓDIGO (Tomates y Destellos) --- */
+.decorations-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* No interrumpe los clics */
+    z-index: 1;
+}
+
+/* Dibujo base del tomate */
+.tomato {
+    position: absolute;
+    background-color: #930500;
+    border-radius: 60% 60% 50% 50%;
+    opacity: 0.15; /* Sutil para que sea fondo */
+}
+
+/* Hojita verde del tomate */
+.tomato::before {
+    content: '';
+    position: absolute;
+    background-color: #95BBEA; /* Usamos el azul como contraste estético */
+    width: 30%;
+    height: 20%;
+    top: -12%;
+    left: 35%;
+    border-radius: 50% 50% 0 0;
+}
+
+/* Posiciones de los tomates */
+.tomato.t1 { width: 120px; height: 100px; top: 10%; left: 10%; transform: rotate(-15deg); }
+.tomato.t2 { width: 160px; height: 140px; bottom: 15%; right: 8%; transform: rotate(20deg); }
+.tomato.t3 { width: 90px; height: 80px; bottom: 20%; left: 15%; transform: rotate(-5deg); }
+
+/* Efecto Destello (Estrella brillante de 4 puntas) */
+.sparkle {
+    position: absolute;
+    background: #95BBEA;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+.sparkle::before, .sparkle::after {
+    content: '';
+    position: absolute;
+    background: #95BBEA;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Eje vertical del destello */
+.sparkle::before { width: 4px; height: 24px; border-radius: 4px; }
+/* Eje horizontal del destello */
+.sparkle::after { width: 24px; height: 4px; border-radius: 4px; }
+
+/* Posiciones y retrasos de animación de los destellos */
+.sparkle.s1 { top: 25%; right: 20%; animation-delay: 0s; }
+.sparkle.s2 { top: 70%; left: 25%; animation-delay: 0.8s; scale: 0.7; }
+.sparkle.s3 { bottom: 25%; right: 25%; animation-delay: 1.5s; scale: 1.2; }
+.sparkle.s4 { top: 15%; left: 45%; animation-delay: 2.2s; scale: 0.5; }
+
+/* Animación del Destello */
+@keyframes twinkle {
+    0%, 100% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1); opacity: 0.8; }
+}
+
+/* --- CONTENEDOR PRINCIPAL (FRONT) --- */
 .pomodoro-container {
-    background: #ffffff;
-    max-width: 450px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(147, 5, 0, 0.1);
+    background: rgba(255, 255, 255, 0.85); /* Un toque translúcido */
+    backdrop-filter: blur(8px); /* Efecto vidrio esmerilado moderno */
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 30px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(147, 5, 0, 0.08);
     text-align: center;
-    border: 2px solid #95BBEA; /* Borde Cornflower */
+    border: 3px solid #95BBEA;
+    position: relative;
+    z-index: 10; /* Por encima de los fondos */
 }
 
 .mode-buttons {
-    display: table;
-    width: 100%;
-    margin-bottom: 30px;
-    border-collapse: separate;
-    border-spacing: 10px 0;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
 }
 
 .mode-buttons button {
-    display: table-cell;
-    width: 50%;
+    flex: 1;
     padding: 12px;
     border: 2px solid #95BBEA;
     background-color: transparent;
     color: #930500;
-    font-size: 16pt;
+    font-size: 14pt;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .mode-buttons button.active {
-    background-color: #930500; /* Botón activo en Sangria */
+    background-color: #930500;
     color: #FFF8E7;
     border-color: #930500;
 }
 
 .timer-display {
-    font-size: 64pt;
-    font-weight: bold;
+    font-size: 68pt;
+    font-weight: 800;
     color: #930500;
-    margin: 20px 0;
+    margin: 15px 0;
     font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
 }
 
 .control-buttons {
-    display: table;
-    width: 100%;
-    margin-top: 30px;
-    border-collapse: separate;
-    border-spacing: 10px 0;
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
 }
 
 .control-buttons button {
-    display: table-cell;
+    flex: 1;
     padding: 15px;
-    font-size: 14pt;
+    font-size: 13pt;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 #start-btn {
@@ -90,18 +165,14 @@ body {
     color: #FFF8E7;
 }
 
-#start-btn:hover {
-    background-color: #750400;
-}
+#start-btn:hover { background-color: #750400; transform: translateY(-1px); }
 
 #pause-btn {
-    background-color: #95BBEA; /* Botón Pausa en Cornflower */
+    background-color: #95BBEA;
     color: #930500;
 }
 
-#pause-btn:hover {
-    background-color: #7da5d4;
-}
+#pause-btn:hover { background-color: #7da5d4; transform: translateY(-1px); }
 
 #reset-btn {
     background-color: #FFF8E7;
@@ -109,17 +180,15 @@ body {
     border: 2px solid #930500;
 }
 
-#reset-btn:hover {
-    background-color: #f2ebd9;
-}
+#reset-btn:hover { background-color: #f2ebd9; }
 
 .status-text {
     margin-top: 25px;
-    font-size: 13pt;
+    font-size: 12pt;
     font-style: italic;
-    color: #95BBEA;
+    color: #930500;
     font-weight: 600;
-    background-color: rgba(149, 187, 234, 0.1);
+    background-color: rgba(149, 187, 234, 0.2);
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
 }
