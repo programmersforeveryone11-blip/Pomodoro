@@ -1,4 +1,3 @@
-// Variables de estado del temporizador
 let timer;
 let minutesDisplay = document.getElementById('minutes');
 let secondsDisplay = document.getElementById('seconds');
@@ -9,7 +8,7 @@ let workBtn = document.getElementById('work-btn');
 let breakBtn = document.getElementById('break-btn');
 let statusMessage = document.getElementById('status-message');
 
-let timeLeft = 25 * 60; // 25 minutos por defecto
+let timeLeft = 25 * 60; 
 let isWorking = true;
 let isRunning = false;
 
@@ -24,7 +23,7 @@ function startTimer() {
     if (isRunning) return;
     isRunning = true;
     startBtn.style.display = 'none';
-    pauseBtn.style.display = 'table-cell';
+    pauseBtn.style.display = 'block';
     
     timer = setInterval(() => {
         if (timeLeft > 0) {
@@ -41,40 +40,37 @@ function startTimer() {
 function pauseTimer() {
     clearInterval(timer);
     isRunning = false;
-    startBtn.style.display = 'table-cell';
+    startBtn.style.display = 'block';
     pauseBtn.style.display = 'none';
 }
 
 function resetTimer() {
     clearInterval(timer);
     isRunning = false;
-    startBtn.style.display = 'table-cell';
+    startBtn.style.display = 'block';
     pauseBtn.style.display = 'none';
     timeLeft = isWorking ? 25 * 60 : 5 * 60;
     updateDisplay();
 }
 
 function switchMode() {
-    // Alerta de pitido integrada nativamente mediante Web Audio API
     try {
         let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let oscillator = audioCtx.createOscillator();
         oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+        oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); // Nota Do alta
         oscillator.connect(audioCtx.destination);
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.3);
     } catch(e) {}
 
     if (isWorking) {
-        // Cambiar a descanso
         isWorking = false;
         workBtn.classList.remove('active');
         breakBtn.classList.add('active');
-        timeLeft = 5 * 60; // 5 minutos de descanso
+        timeLeft = 5 * 60; 
         statusMessage.textContent = '¡Tiempo de un respiro!';
     } else {
-        // Cambiar a trabajo
         isWorking = true;
         breakBtn.classList.remove('active');
         workBtn.classList.add('active');
@@ -84,7 +80,6 @@ function switchMode() {
     updateDisplay();
 }
 
-// Event Listeners
 startBtn.addEventListener('click', startTimer);
 pauseBtn.addEventListener('click', pauseTimer);
 resetBtn.addEventListener('click', resetTimer);
@@ -109,5 +104,4 @@ breakBtn.addEventListener('click', () => {
     }
 });
 
-// Inicializar pantalla
 updateDisplay();
