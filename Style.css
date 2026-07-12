@@ -1,194 +1,252 @@
-/* Paleta de Colores Extraída:
-   - Cosmic Latte: #FFF8E7
-   - Sangria: #930500
-   - Cornflower: #95BBEA
+/* Estilos inspirados exactamente en Focus Keeper
+   Fondo: Creamy Latte / Off-white (#FBF7EC)
+   Acento Coral/Rojo: #FF5252
+   Texto Oscuro: #333333
 */
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    background-color: #FFF8E7;
-    color: #930500;
+    background-color: #FBF7EC;
+    color: #333333;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    display: block;
     position: relative;
+    padding-bottom: 60px;
 }
 
-/* --- DECORACIONES POR CÓDIGO (Tomates y Destellos) --- */
-.decorations-layer {
-    position: absolute;
+/* --- NAVBAR --- */
+.navbar {
+    display: table;
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none; /* No interrumpe los clics */
-    z-index: 1;
+    padding: 20px 40px;
+    background-color: #FBF7EC;
 }
 
-/* Dibujo base del tomate */
-.tomato {
-    position: absolute;
-    background-color: #930500;
-    border-radius: 60% 60% 50% 50%;
-    opacity: 0.15; /* Sutil para que sea fondo */
+.logo {
+    display: table-cell;
+    vertical-align: middle;
+    width: 33%;
 }
 
-/* Hojita verde del tomate */
-.tomato::before {
-    content: '';
-    position: absolute;
-    background-color: #95BBEA; /* Usamos el azul como contraste estético */
-    width: 30%;
-    height: 20%;
-    top: -12%;
-    left: 35%;
-    border-radius: 50% 50% 0 0;
+.logo-icon {
+    font-size: 18pt;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
-/* Posiciones de los tomates */
-.tomato.t1 { width: 120px; height: 100px; top: 10%; left: 10%; transform: rotate(-15deg); }
-.tomato.t2 { width: 160px; height: 140px; bottom: 15%; right: 8%; transform: rotate(20deg); }
-.tomato.t3 { width: 90px; height: 80px; bottom: 20%; left: 15%; transform: rotate(-5deg); }
-
-/* Efecto Destello (Estrella brillante de 4 puntas) */
-.sparkle {
-    position: absolute;
-    background: #95BBEA;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    opacity: 0;
-    animation: twinkle 3s infinite ease-in-out;
-}
-
-.sparkle::before, .sparkle::after {
-    content: '';
-    position: absolute;
-    background: #95BBEA;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-/* Eje vertical del destello */
-.sparkle::before { width: 4px; height: 24px; border-radius: 4px; }
-/* Eje horizontal del destello */
-.sparkle::after { width: 24px; height: 4px; border-radius: 4px; }
-
-/* Posiciones y retrasos de animación de los destellos */
-.sparkle.s1 { top: 25%; right: 20%; animation-delay: 0s; }
-.sparkle.s2 { top: 70%; left: 25%; animation-delay: 0.8s; scale: 0.7; }
-.sparkle.s3 { bottom: 25%; right: 25%; animation-delay: 1.5s; scale: 1.2; }
-.sparkle.s4 { top: 15%; left: 45%; animation-delay: 2.2s; scale: 0.5; }
-
-/* Animación del Destello */
-@keyframes twinkle {
-    0%, 100% { transform: scale(0.3); opacity: 0; }
-    50% { transform: scale(1); opacity: 0.8; }
-}
-
-/* --- CONTENEDOR PRINCIPAL (FRONT) --- */
-.pomodoro-container {
-    background: rgba(255, 255, 255, 0.85); /* Un toque translúcido */
-    backdrop-filter: blur(8px); /* Efecto vidrio esmerilado moderno */
-    width: 100%;
-    max-width: 420px;
-    padding: 35px 30px;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(147, 5, 0, 0.08);
-    text-align: center;
-    border: 3px solid #95BBEA;
-    position: relative;
-    z-index: 10; /* Por encima de los fondos */
-}
-
-.mode-buttons {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.mode-buttons button {
-    flex: 1;
-    padding: 12px;
-    border: 2px solid #95BBEA;
-    background-color: transparent;
-    color: #930500;
+.logo-text {
+    font-weight: 800;
     font-size: 14pt;
-    font-weight: bold;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    color: #333333;
+    vertical-align: middle;
 }
 
-.mode-buttons button.active {
-    background-color: #930500;
-    color: #FFF8E7;
-    border-color: #930500;
+.nav-links {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 34%;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #777777;
+    font-weight: 600;
+    font-size: 11pt;
+    margin: 0 15px;
+    transition: color 0.2s;
+}
+
+.nav-links a.active, .nav-links a:hover {
+    color: #333333;
+}
+
+.login-btn {
+    display: table-cell;
+    float: right;
+    background-color: #FF5252;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 22px;
+    font-size: 11pt;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: -3px;
+}
+
+/* --- CONTENEDOR CENTRAL --- */
+.main-container {
+    max-width: 800px;
+    margin: 60px auto 0 auto;
+    text-align: center;
+}
+
+.timer-title {
+    font-size: 16pt;
+    color: #A09C90;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .timer-display {
-    font-size: 68pt;
-    font-weight: 800;
-    color: #930500;
-    margin: 15px 0;
-    font-variant-numeric: tabular-nums;
+    font-size: 110pt;
+    font-weight: 700;
+    color: #333333;
+    line-height: 1;
+    margin-bottom: 20px;
     letter-spacing: -2px;
 }
 
-.control-buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
+/* Indicadores de ciclos */
+.cycle-indicators {
+    margin-bottom: 50px;
 }
 
-.control-buttons button {
-    flex: 1;
-    padding: 15px;
-    font-size: 13pt;
-    font-weight: bold;
+.dot {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    border: 2px solid #DCD8CD;
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+}
+
+.dot::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #DCD8CD;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+}
+
+.dot.active::before {
+    background-color: #FF5252;
+}
+
+/* --- PANEL INFERIOR (TARJETAS + BOTÓN) --- */
+.bottom-control-panel {
+    display: table;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.cards-container {
+    display: table-cell;
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.config-card {
+    display: inline-block;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 12px 15px;
+    width: 29%;
+    margin-right: 3%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.config-card.active {
+    border-color: #FF5252;
+}
+
+.card-label {
+    font-size: 10pt;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.color-focus { color: #FF5252; }
+.color-short { color: #4A90E2; }
+.color-long { color: #4A4A4A; }
+
+.card-value-row {
+    display: block;
+    white-space: nowrap;
+}
+
+.card-icon {
+    font-size: 12pt;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.config-card input {
+    width: 45px;
+    font-size: 15pt;
+    font-weight: 700;
     border: none;
+    color: #333333;
+    background: transparent;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.config-card input:focus {
+    outline: none;
+}
+
+.config-card input::-webkit-outer-spin-button,
+.config-card input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.card-unit {
+    font-size: 10pt;
+    color: #999999;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+/* Botón START principal */
+.start-btn {
+    display: table-cell;
+    width: 25%;
+    background-color: #FF5252;
+    color: #FFFFFF;
+    border: none;
+    padding: 18px 0;
+    font-size: 14pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(255, 82, 82, 0.2);
+    vertical-align: middle;
+    text-align: center;
+    transition: background-color 0.2s;
 }
 
-#start-btn {
-    background-color: #930500;
-    color: #FFF8E7;
+.start-btn:hover {
+    background-color: #e04444;
 }
 
-#start-btn:hover { background-color: #750400; transform: translateY(-1px); }
-
-#pause-btn {
-    background-color: #95BBEA;
-    color: #930500;
-}
-
-#pause-btn:hover { background-color: #7da5d4; transform: translateY(-1px); }
-
-#reset-btn {
-    background-color: #FFF8E7;
-    color: #930500;
-    border: 2px solid #930500;
-}
-
-#reset-btn:hover { background-color: #f2ebd9; }
-
-.status-text {
-    margin-top: 25px;
-    font-size: 12pt;
-    font-style: italic;
-    color: #930500;
-    font-weight: 600;
-    background-color: rgba(149, 187, 234, 0.2);
-    padding: 10px;
-    border-radius: 10px;
+/* --- BANNER INFERIOR --- */
+.bottom-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #FF5252;
 }
