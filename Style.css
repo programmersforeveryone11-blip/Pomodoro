@@ -1,0 +1,125 @@
+/* Paleta de Colores Extraída:
+   - Cosmic Latte: #FFF8E7
+   - Sangria: #930500
+   - Cornflower: #95BBEA
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #FFF8E7; /* Fondo Cosmic Latte */
+    color: #930500; /* Texto Sangria */
+    display: block;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.pomodoro-container {
+    background: #ffffff;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(147, 5, 0, 0.1);
+    text-align: center;
+    border: 2px solid #95BBEA; /* Borde Cornflower */
+}
+
+.mode-buttons {
+    display: table;
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: separate;
+    border-spacing: 10px 0;
+}
+
+.mode-buttons button {
+    display: table-cell;
+    width: 50%;
+    padding: 12px;
+    border: 2px solid #95BBEA;
+    background-color: transparent;
+    color: #930500;
+    font-size: 16pt;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-buttons button.active {
+    background-color: #930500; /* Botón activo en Sangria */
+    color: #FFF8E7;
+    border-color: #930500;
+}
+
+.timer-display {
+    font-size: 64pt;
+    font-weight: bold;
+    color: #930500;
+    margin: 20px 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.control-buttons {
+    display: table;
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: separate;
+    border-spacing: 10px 0;
+}
+
+.control-buttons button {
+    display: table-cell;
+    padding: 15px;
+    font-size: 14pt;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#start-btn {
+    background-color: #930500;
+    color: #FFF8E7;
+}
+
+#start-btn:hover {
+    background-color: #750400;
+}
+
+#pause-btn {
+    background-color: #95BBEA; /* Botón Pausa en Cornflower */
+    color: #930500;
+}
+
+#pause-btn:hover {
+    background-color: #7da5d4;
+}
+
+#reset-btn {
+    background-color: #FFF8E7;
+    color: #930500;
+    border: 2px solid #930500;
+}
+
+#reset-btn:hover {
+    background-color: #f2ebd9;
+}
+
+.status-text {
+    margin-top: 25px;
+    font-size: 13pt;
+    font-style: italic;
+    color: #95BBEA;
+    font-weight: 600;
+    background-color: rgba(149, 187, 234, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
